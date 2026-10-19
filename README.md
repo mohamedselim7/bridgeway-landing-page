@@ -1,19 +1,28 @@
 # Bridgeway Landing Page
 
-A responsive landing page for Bridgeway, a payments platform, built from the supplied Figma frames.
+A responsive landing page for Bridgeway, built using the provided Figma designs.
 
 ## Tech Stack
 
-Vue 3 (Composition API, `<script setup>`), Tailwind CSS v4, and Vite.
+- Vue 3 (Composition API)
+- Tailwind CSS v4
+- Vite
 
 ## Getting Started
 
+Install dependencies:
+
 ```bash
 npm install
+```
+
+Start the development server:
+
+```bash
 npm run dev
 ```
 
-Production build:
+Build for production:
 
 ```bash
 npm run build
@@ -21,25 +30,32 @@ npm run build
 
 ## Project Structure
 
-- `src/components/common` – reusable pieces: logo, button, social link.
-- `src/components/features` – the feature card and its icon.
-- `src/components/sections` – one component per page section; `App.vue` only composes them.
-- `src/data` – content and artwork kept apart from markup: feature copy, partner logos, and `artwork.js`, which holds the original vector paths taken from the Figma frames.
-- `src/assets` – the original logos, partner logos and photos.
-- `src/styles/main.css` – Tailwind entry with the brand colours from the Figma brand board.
+- `src/components/common` – shared components such as buttons, logos, and social icons.
+- `src/components/features` – reusable feature cards and icons.
+- `src/components/sections` – individual landing page sections.
+- `src/data` – feature content, partner data, and SVG artwork definitions.
+- `src/assets` – images, logos, and other design assets.
+- `src/styles/main.css` – Tailwind styles and brand colors.
+
+`App.vue` brings the sections together.
 
 ## Implementation Notes
 
-The desktop hero and CTA are overlapping, free-form compositions: the bridge photo is clipped to a curved shape that crosses both the purple and lime panels, and the headline has to sit exactly on the edge between them. Each of these sections is laid out as a fixed-ratio artboard, with the original Figma vectors drawn in one SVG and the real HTML text placed on top using container-width (`cqw`) units. Text and shapes therefore scale together between 1024px and 1440px. Below 1024px the sections switch to the stacked layout from the mobile frames.
+The main challenge was implementing the overlapping shapes and text in the desktop hero and CTA sections while keeping them responsive.
+
+I used the original Figma SVG paths for the artwork and positioned the HTML content using container-relative units (`cqw`). This keeps the elements aligned as the container scales.
+
+For smaller screens, the layout switches to the mobile structure.
 
 ## Possible Improvements
 
-- Confirm the font family from the Figma text styles and load the exact typeface.
-- Add visual regression screenshots for the main breakpoints.
+- Use the exact font family once it is confirmed from Figma.
+- Add visual regression tests for different screen sizes.
 
 ## Design Differences
 
-- The text font is unverified: the Figma exports contain outlined text only. Inter is used because it matches the mobile frames. The desktop headings in Figma use a slightly wider typeface.
-- The mobile header uses the original white wordmark. The mobile frame draws "Bridgeway" in the text font instead.
-- The "Get Started" buttons in the header and CTA have no signup destination yet. They keep their design but do not act as links. The header button scrolls to the contact section.
-- The social icons are not linked because no official profile URLs were provided.
+- Inter is used because the exported Figma text is outlined, making the original font difficult to identify.
+- The mobile header uses the original Bridgeway SVG logo instead of text.
+- The header "Get Started" button scrolls to the CTA section.
+- The lower "Get Started" button has no destination because a signup URL was not provided.
+- Social icons are displayed without links because official profile URLs were not provided.
