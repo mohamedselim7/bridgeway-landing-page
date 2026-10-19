@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+/* Exact swatches from the Figma brand board (09-brand-guidelines.svg). */
+@theme {
+  --color-brand-lime: #eef36a;
+  --color-brand-plum: #3f3047;
+  --color-brand-blue: #5171a5;
+  --color-brand-green: #9bc995;
+  --color-brand-mist: #e8f0ec;
+  --color-brand-mauve: #6b5f73;
+  --color-brand-red: #d64545;
+  /* Not on the brand board; taken from the footer wordmark and card borders in the frames. */
+  --color-ink: #222222;
+  --color-card-line: #e8dddd;
+
+  /* The Figma files contain outlined text only, so the family is unverified; Inter matches the mobile frames. */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white font-sans text-brand-plum antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
